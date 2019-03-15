@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Scharff Geolocalization Application</string>
+    <!-- Inicio de sesión -->
+    <string name="login_title">Inicio de sesión</string>
+    <string name="login_input_email">Correo electrónico</string>
+    <string name="login_input_password">Contraseña</string>
+    <string name="login_button_submit">Iniciar sesión</string>
+    <!-- Geolocalización -->
+    <string name="tracking_title">Geolocalización</string>
+    <string name="tracking_notif_title">Enviando ubicación en tiempo real</string>
+    <string name="tracking_notif_text">Haga clic aquí para dejar de transmitir su ubicación</string>
+    <string name="tracking_msg_gps">Por favor active el servicio de ubicación.</string>
+</resources>
