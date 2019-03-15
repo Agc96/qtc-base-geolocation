@@ -34,7 +34,7 @@ Estos son los pasos a seguir para crear un proyecto en Android usando Firebase, 
 
 6. Después de que se haya creado la base de datos, ir a la subpestaña **Reglas** y reemplazar el JSON contenido en dicha pestaña con el JSON a continuación:
 
-``` JSON
+```JSON
 {
   "rules": {
     "users": {
@@ -64,24 +64,28 @@ Los valores que se usaron fueron:
 ## Conectar el proyecto móvil con Firebase:
 
 1. En Android Studio, ir a la barra superior, hacer clic en **Tools** y luego en **Firebase**. Se abrirá una pestaña llamada "Asistente" a la derecha.
-<div style="text-align: center;"><img src="img/android-firebase.png" alt="Asistente de Firebase"></div>
+
+![Asistente de Firebase](img/android-firebase.png)
 
 2. Clic en **Authentication** y luego clic en **Email and password authentication**. Se entrará a la opción de configurar la autenticación con Firebase.
-<div style="text-align: center;"><img src="img/android-auth.png" alt="Asistente de Firebase Authentication"></div>
+
+![Asistente de Firebase Authentication](img/android-auth.png)
 
 3. Clic en **Connect to Firebase**. Se abrirá una página donde pedirá seleccionar o crear un proyecto de Firebase. Seleccionar el proyecto creado en el paso 1. Hacer clic en **Connect to Firebase**. Esperar a que se sincronice el aplicativo con Firebase.
-<div style="text-align: center;"><img src="img/android-connect.png" alt="Seleccionar proyecto de Firebase a usar"></div>
+
+![Seleccionar proyecto de Firebase a usar](img/android-connect.png)
 
 4. Hacer clic en **Add Firebase Authentication to your app**, aceptar los cambios en `build.gradle` y esperar a que se ejecuten los cambios. Si ocurre algún problema, ir al paso 7 para identificar posibles causas.
 
 5. Regresar al menú principal de Firebase y ahora hacer clic en **Database** y luego clic en **Save and Retrieve Data**. Se entrará a la opción de configurar el uso de Realtime Database de Firebase.
-<div style="text-align: center;"><img src="img/android-db.png" alt="Asistente de Firebase Realtime Database"></div>
+
+![Asistente de Firebase Realtime Database](img/android-db.png)
 
 6. Hacer clic en **Add the Realtime Database to your app**, aceptar los cambios en `build.gradle` y esperar a que se ejecuten los cambios. Si ocurre algún problema, ir al siguiente paso para identificar posibles causas.
 
 7. Asegurarse de que en el archivo `build.gradle` de la raíz del proyecto de Android esté colocado lo siguiente:
 
-```JS
+```Groovy
 buildscript {
     // ...
     dependencies {
@@ -94,7 +98,7 @@ buildscript {
 
 Y de que en el archivo `build.gradle` del módulo (carpeta) `app` esté colocado lo siguiente, agregando una dependencia para el uso de geolocalización debajo de las de Firebase:
 
-```JS
+```Groovy
 apply plugin: 'com.android.application'
 apply plugin: 'com.google.gms.google-services'
 
