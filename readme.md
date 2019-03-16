@@ -1,4 +1,4 @@
-# QTC Scharff Geolocalization
+# QTC Base Geolocalization
 
 Estos son los pasos a seguir para crear un proyecto en Android usando Firebase, que permita enviar cada cierto tiempo la ubicación del dispositivo que usa el aplicativo móvil.
 
@@ -10,7 +10,7 @@ Estos son los pasos a seguir para crear un proyecto en Android usando Firebase, 
 
 ![Página de inicio de la consola de Firebase](img/console-start.png)
 
-3. En *Nombre del proyecto*, si se tiene un proyecto anterior al que se desea agregar Firebase, se puede seleccionar aquí, caso contrario colocar un nombre para el proyecto nuevo. Como ejemplo se puso *QTC Scharff Geolocalization*.
+3. En *Nombre del proyecto*, si se tiene un proyecto anterior al que se desea agregar Firebase, se puede seleccionar aquí, caso contrario colocar un nombre para el proyecto nuevo. Como ejemplo se puso *QTC Base Geolocation*.
 
 4. Si se desea, se puede desactivar la configuración predeterminada de Google Analytics, aunque se debe hacer un paso adicional para permitir o denegar qué elementos pueden usar Google Analytics en el proyecto.
 
@@ -37,7 +37,7 @@ Estos son los pasos a seguir para crear un proyecto en Android usando Firebase, 
 ```JSON
 {
   "rules": {
-    "users": {
+    "locations": {
       "$uid": {
         ".read": "auth != null",
         ".write": "auth != null && $uid === auth.uid"
@@ -46,7 +46,7 @@ Estos son los pasos a seguir para crear un proyecto en Android usando Firebase, 
   }
 }
 ```
-Esto permitirá que cualquier usuario autenticado pueda leer la información del resto de usuarios, pero un usuario autenticado solo puede editar los datos de sí mismo/a.
+Esto permitirá que cualquier usuario autenticado pueda leer la información de ubicación del resto de usuarios, pero un usuario autenticado solo puede editar los datos de sí mismo/a.
 
 7. Para evitar que se borre la base de datos al no tener datos colocados, colocar `users` como nodo hijo de la base de datos, y un *nodo de prueba* como nodo hijo de `users`.
 
@@ -55,7 +55,7 @@ Esto permitirá que cualquier usuario autenticado pueda leer la información del
 ## Crear proyecto en Android Studio
 
 Los valores que se usaron fueron:
-- **Application Name**: Scharff Geolocalization App
+- **Application Name**: Base Geolocation App
 - **Company domain**: qtcteam.com
 - **Package name**: com.qtcteam.scharff.geolocalization
 - **Minimum SDK**: API 19: Android 4.4 (KitKat)
