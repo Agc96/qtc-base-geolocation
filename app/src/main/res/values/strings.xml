@@ -1,31 +1,45 @@
 <resources>
     <string name="app_name">Base Geolocation App</string>
 
+    <!--
+     Abreviaturas
+     - txt: TextView
+     - input: EditText
+     - msg: Toast
+     - dlg: AlertDialog
+     - ntf: Notification
+     - err: Error/Excepción
+     -->
+
     <!-- Inicio de sesión -->
     <string name="login_title">Inicio de sesión</string>
     <string name="login_input_email">Correo electrónico</string>
     <string name="login_input_password">Contraseña</string>
-    <string name="login_button_submit">Iniciar sesión</string>
+    <string name="login_btn_submit">Iniciar sesión</string>
     <string name="login_msg_email_empty">Ingrese su correo electrónico.</string>
     <string name="login_msg_email_invalid">Ingrese un correo electrónico válido.</string>
     <string name="login_msg_password_empty">Ingrese su contraseña.</string>
     <string name="login_msg_validating">Iniciando sesión…</string>
-    <string name="login_dialog_auth_title">No se pudo iniciar sesión</string>
+    <string name="login_dlg_auth_title">No se pudo iniciar sesión</string>
 
     <!-- Geolocalización -->
     <string name="tracking_title">Ubicación en tiempo real</string>
+    <string name="tracking_btn_start">Iniciar transmisión de ubicación</string>
+    <string name="tracking_btn_end">Finalizar transmisión de ubicación</string>
     <string name="tracking_msg_no_gps">Este dispositivo no tiene un servicio de ubicación.</string>
-    <string name="tracking_msg_gps_inactive">Por favor active el servicio de ubicación.</string>
-    <string name="tracking_notif_title">Enviando ubicación en tiempo real</string>
-    <string name="tracking_notif_text">Haga clic aquí para dejar de transmitir su ubicación</string>
+    <string name="tracking_msg_gps_inactive">Por favor active su GPS.</string>
+    <string name="tracking_dlg_allow_permissions">Debe aceptar los permisos para que la aplicación
+        pueda transmitir su ubicación en tiempo real.</string>
+    <string name="tracking_ntf_text">Compartiendo su ubicación en tiempo real</string>
 
     <!-- Errores de Firebase -->
-    <string name="firebase_error_unknown">Hubo un error desconocido al conectarse a Firebase.</string>
-    <string name="firebase_error_network">Ocurrió un error al conectarse a Firebase. Verifique que
+    <string name="firebase_err_unknown">Hubo un error desconocido al conectarse a Firebase.</string>
+    <string name="firebase_err_network">Ocurrió un error al conectarse a Firebase. Verifique que
         tenga una conexión adecuada a Internet.</string>
-    <string name="firebase_auth_email_invalid">El correo electrónico ingresado no es válido.</string>
-    <string name="firebase_auth_email_not_found">El correo electrónico ingresado no está registrado.</string>
-    <string name="firebase_auth_email_disabled">El usuario con el correo electrónico ingresado ha
+    <string name="firebase_err_email_invalid">El correo electrónico ingresado no es válido.</string>
+    <string name="firebase_err_email_not_found">El correo electrónico ingresado no está registrado.</string>
+    <string name="firebase_err_email_disabled">El usuario con el correo electrónico ingresado ha
         sido desactivado. Póngase en contacto con el administrador.</string>
-    <string name="firebase_auth_password_invalid">La contraseña ingresada no es válida.</string>
+    <string name="firebase_err_password_invalid">La contraseña ingresada no es válida.</string>
+
 </resources>

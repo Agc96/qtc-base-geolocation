@@ -1,4 +1,4 @@
-# QTC Base Geolocalization
+# QTC Base Geolocation
 
 Estos son los pasos a seguir para crear un proyecto en Android usando Firebase, que permita enviar cada cierto tiempo la ubicación del dispositivo que usa el aplicativo móvil.
 
@@ -42,13 +42,17 @@ Estos son los pasos a seguir para crear un proyecto en Android usando Firebase, 
         ".read": "auth != null",
         ".write": "auth != null && $uid === auth.uid"
       }
+    },
+    "orders": {
+      ".read": "auth != null",
+      ".write": "auth != null"
     }
   }
 }
 ```
 Esto permitirá que cualquier usuario autenticado pueda leer la información de ubicación del resto de usuarios, pero un usuario autenticado solo puede editar los datos de sí mismo/a.
 
-7. Para evitar que se borre la base de datos al no tener datos colocados, colocar `users` como nodo hijo de la base de datos, y un *nodo de prueba* como nodo hijo de `users`.
+7. Para evitar que se borre la base de datos al no tener datos colocados, colocar `locations` como nodo hijo de la base de datos, y un *nodo de prueba* como nodo hijo de `locations`.
 
 ![Nodos de prueba](img/console-db-data.png)
 
