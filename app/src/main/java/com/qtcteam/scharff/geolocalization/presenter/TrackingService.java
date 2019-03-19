@@ -21,7 +21,6 @@ import com.qtcteam.scharff.geolocalization.R;
 public class TrackingService extends Service {
 
     private static final String TAG = "QTC_GEO_SERVICE";
-
     private static final String FIREBASE_DB_LOCATIONS = "locations";
     private static final String FIREBASE_DB_ORDERS = "orders";
     private static final int LOCATION_INTERVAL = 10000;
@@ -30,6 +29,7 @@ public class TrackingService extends Service {
 
     private FirebaseUser user;
     private FusedLocationProviderClient client;
+    private String order;
 
     @Override
     public IBinder onBind (Intent intent) {
@@ -45,8 +45,21 @@ public class TrackingService extends Service {
             buildNotification();
             requestLocationUpdates();
         } else {
-            Log.e(TAG, "user is null for some reason, not doing anything");
+            Log.w(TAG, "user is null for some reason, aborting...");
+            stopSelf();
         }
+    }
+
+    @Override
+    public int onStartCommand(Intent intent, int flags, int startId) {
+        if (intent != null) {
+            order = intent.getStringExtra(TrackingPresenter.EXTRA_ORDER);
+            if (order == null) {
+                Log.w(TAG, "order is null for some reason, aborting...");
+                stopSelf();
+            }
+        }
+        return super.onStartCommand(intent, flags, startId);
     }
 
     private void buildNotification () {
@@ -68,7 +81,8 @@ public class TrackingService extends Service {
         try {
             client.requestLocationUpdates(request, callback, null);
         } catch (SecurityException ex) {
-            Log.d(TAG, "User revoked permission to access location");
+            Log.d(TAG, "User revoked permission to access location, aborting...");
+            stopSelf();
         }
     }
 
@@ -81,7 +95,9 @@ public class TrackingService extends Service {
             if (location != null) {
                 Log.d(TAG, "location update");
                 db.child(FIREBASE_DB_LOCATIONS).child(user.getUid()).setValue(location);
-                db.child(FIREBASE_DB_ORDERS).child("ORD1234").setValue(user.getUid());
+                if (order != null) {
+                    db.child(FIREBASE_DB_ORDERS).child(order).setValue(user.getUid());
+                }
             } else {
                 Log.d(TAG, "location is null");
             }

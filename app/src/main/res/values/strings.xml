@@ -24,6 +24,8 @@
 
     <!-- Geolocalización -->
     <string name="tracking_title">Ubicación en tiempo real</string>
+    <string name="tracking_input_order">Código del pedido</string>
+    <string name="tracking_msg_order_empty">Ingrese el código del pedido.</string>
     <string name="tracking_btn_start">Iniciar transmisión de ubicación</string>
     <string name="tracking_btn_end">Finalizar transmisión de ubicación</string>
     <string name="tracking_msg_no_gps">Este dispositivo no tiene un servicio de ubicación.</string>

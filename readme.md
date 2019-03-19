@@ -16,7 +16,9 @@ Estos son los pasos a seguir para crear un proyecto en Android usando Firebase, 
 
 5. Clic en **Crear proyecto**.
 
-## Habilitar autenticación y Realtime Database de Firebase
+## Habilitar autenticación con correo y contraseña en Firebase
+
+Para las pruebas con el proyecto, se usó la autenticación con usuario y contraseña. Si se desea usar este método para trabajar con Firebase, seguir los siguientes pasos:
 
 1. Ir a **https://console.firebase.google.com/** y seleccionar el proyecto creado.
 
@@ -28,11 +30,26 @@ Estos son los pasos a seguir para crear un proyecto en Android usando Firebase, 
 
 4. Crear los usuarios que se deseen en la subpestaña de **Usuarios**.
 
-5. Seleccionar ahora la pestaña **Database**, ir hacia **Realtime Database** y hacer clic en **Crear base de datos**. De preferencia, dejar la configuración por defecto y hacer clic en **Habilitar**, pues de todas maneras se va a reemplazar la configuración en el paso siguiente.
+## Otras formas de autenticación
+
+Si se desea una forma personalizada para autenticarse (ej. nombre de usuario cualquiera + contraseña, DNI o RUC + contraseña, etc.) se debe configurar en el servidor propio que se tenga para la autenticación de usuarios, que brinde un servicio tal que, en base a los parámetros de inicio de sesión (usuario + contraseña, por ejemplo) devuelva un token autogenerado por la API de Firebase
+
+- Para **crear tokens** personalizados en un servidor propio, ver "Crea tokens personalizados" en la documentación de Firebase (https://firebase.google.com/docs/auth/admin/create-custom-tokens).
+- Para **autenticarse en el aplicativo móvil** usando el token de Firebase proporcionado por la forma personalizada de autenticación, ver "Cómo autenticar con Firebase en Android mediante un sistema de autenticación personalizado" en la documentación de Firebase (https://firebase.google.com/docs/auth/android/custom-auth).
+
+También es posible no realizar autenticación alguna, y leer y escribir la información de los scharffers de forma pública, pero **no es recomendable** debido a que cualquier usuario es capaz de leer dicha información sensible. Para ello, se debe otorgar permisos a todos en toda la base de datos, es decir, activar la opción de (*Comenzar en modo de prueba*) al momento de crear la base de datos de Firebase.
+
+## Habilitar Firebase Realtime Database
+
+Sea cual sea la forma de autenticación, es necesario configurar la base de datos NoSQL de Firebase, para poder guardar ahí las ubicaciones de los scharffers. Para ello, seguir los siguientes pasos:
+
+1. Seleccionar la pestaña **Database**, ir hacia **Realtime Database** y hacer clic en **Crear base de datos**. Si es que se ha activado la **autenticación con usuario y contraseña**, de preferencia dejar la configuración por defecto y hacer clic en **Habilitar**, pues de todas maneras se va a reemplazar la configuración en el paso siguiente. Caso contrario, colocar la segunda opción (*Comenzar en modo de prueba*).
 
 ![Firebase Realtime Database](img/console-db-create.png)
 
-6. Después de que se haya creado la base de datos, ir a la subpestaña **Reglas** y reemplazar el JSON contenido en dicha pestaña con el JSON a continuación:
+![Firebase Realtime Database](img/console-db-create-2.png)
+
+2. Si es que se ha activado la **autenticación con usuario y contraseña**, después de que se haya creado la base de datos, ir a la subpestaña **Reglas** y reemplazar el JSON contenido en dicha pestaña con el JSON a continuación:
 
 ```JSON
 {
@@ -52,7 +69,7 @@ Estos son los pasos a seguir para crear un proyecto en Android usando Firebase, 
 ```
 Esto permitirá que cualquier usuario autenticado pueda leer la información de ubicación del resto de usuarios, pero un usuario autenticado solo puede editar los datos de sí mismo/a.
 
-7. Para evitar que se borre la base de datos al no tener datos colocados, colocar `locations` como nodo hijo de la base de datos, y un *nodo de prueba* como nodo hijo de `locations`.
+4. Para evitar que se borre la base de datos al no tener datos colocados, colocar `locations` como nodo hijo de la base de datos, y un *nodo de prueba* como nodo hijo de `locations`.
 
 ![Nodos de prueba](img/console-db-data.png)
 
@@ -118,7 +135,10 @@ dependencies {
 ```
 Las versiones de Firebase para Android pueden variar conforme pase el tiempo, lo importante es que los módulos estén declarados en los archivos `.gradle`.
 
-## Links de interés
+## Proyecto en Android
+
+Este proyecto desarrollado por los desarrolladores de Android sirve como base para programar la transmisión de la ubicación de un dispositivo móvil usando Firebase:
 
 - https://codelabs.developers.google.com/codelabs/realtime-asset-tracking/index.html
-- https://www.androidauthority.com/create-a-gps-tracking-application-with-firebase-realtime-databse-844343/
+
+En base a dicho proyecto, se presenta en este repositorio una app de prueba de concepto usando autenticación por correo y contraseña, y escritura a la base de datos de Firebase.

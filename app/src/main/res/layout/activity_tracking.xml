@@ -8,10 +8,20 @@
     android:padding="16dp"
     tools:context=".view.TrackingActivity">
 
+    <EditText
+        android:id="@+id/tracking_input_order"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="@string/tracking_input_order"
+        android:inputType="textPersonName" />
+
     <Button
         android:id="@+id/tracking_btn_start"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
         android:onClick="startTracking"
         android:text="@string/tracking_btn_start" />
 
@@ -19,7 +29,6 @@
         android:id="@+id/tracking_btn_end"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
         android:onClick="stopTracking"
         android:text="@string/tracking_btn_end" />
 </LinearLayout>

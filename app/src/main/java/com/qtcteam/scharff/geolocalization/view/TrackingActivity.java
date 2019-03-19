@@ -1,14 +1,13 @@
 package com.qtcteam.scharff.geolocalization.view;
 
 import android.Manifest;
-import android.os.PersistableBundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
+import android.widget.EditText;
 
 import com.qtcteam.scharff.geolocalization.R;
 import com.qtcteam.scharff.geolocalization.presenter.TrackingPresenter;
@@ -17,11 +16,11 @@ import com.qtcteam.scharff.geolocalization.utils.Permissions;
 public class TrackingActivity extends AppCompatActivity {
 
     private static final String TAG = "QTC_GEO_TRACKING";
-
-    private static final int REQUEST_PERMISSIONS = 1001;
     private static final String HAS_SERVICE = "HAS_SERVICE";
+    private static final int REQUEST_PERMISSIONS = 1001;
 
     private TrackingPresenter presenter;
+    private EditText mOrder;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,14 +36,19 @@ public class TrackingActivity extends AppCompatActivity {
             Log.d(TAG, "bundle is null");
             presenter = new TrackingPresenter(this, false);
         }
+
+        mOrder = findViewById(R.id.tracking_input_order);
     }
 
     public void startTracking (View v) {
+        String order = mOrder.getText().toString();
+        if (!presenter.validateOrder(order)) return;
+
         // Verificar que se tengan los permisos necesarios, en caso no se tengan solicitarlos
         if (presenter.isGPSEnabled() && Permissions.checkOrRequest(this,
                 REQUEST_PERMISSIONS, Manifest.permission.ACCESS_FINE_LOCATION)) {
             // Iniciar el servicio
-            presenter.startService();
+            presenter.startService(order);
         }
     }
 
@@ -64,7 +68,10 @@ public class TrackingActivity extends AppCompatActivity {
         switch (requestCode) {
             case REQUEST_PERMISSIONS:
                 if (Permissions.checkGrantResults(permissions, grantResults)) {
-                    presenter.startService();
+                    String order = mOrder.getText().toString();
+                    if (presenter.validateOrder(order)) {
+                        presenter.startService(order);
+                    }
                 } else {
                     showPermissionsDialog();
                 }

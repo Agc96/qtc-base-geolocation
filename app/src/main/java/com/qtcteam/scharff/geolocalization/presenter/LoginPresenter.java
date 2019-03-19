@@ -26,10 +26,7 @@ public class LoginPresenter implements Presenter {
     }
 
     public boolean validateCredentials (String email, String password) {
-        if (view == null) {
-            return false;
-        }
-        if (email.length() == 0) {
+        if (email == null || email.isEmpty()) {
             Utils.showMessage(view, R.string.login_msg_email_empty);
             return false;
         }
@@ -37,7 +34,7 @@ public class LoginPresenter implements Presenter {
             Utils.showMessage(view, R.string.login_msg_email_invalid);
             return false;
         }
-        if (password.length() == 0) {
+        if (password == null || password.length() == 0) {
             Utils.showMessage(view, R.string.login_msg_password_empty);
             return false;
         }
@@ -56,9 +53,6 @@ public class LoginPresenter implements Presenter {
     }
 
     public String getAuthErrorMessage (Exception exception) {
-        if (view == null) {
-            return exception.getLocalizedMessage();
-        }
         if (exception == null) {
             return view.getString(R.string.firebase_err_unknown);
         }
